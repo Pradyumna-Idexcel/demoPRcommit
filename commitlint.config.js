@@ -9,6 +9,8 @@ module.exports =  {
         rules: {
             'type-empty': (parsed) => {
                 const { type } = parsed;
+                console.log('type', type);
+                
                 if (!type) {
                     return [false, 'type is required'];
                 }
