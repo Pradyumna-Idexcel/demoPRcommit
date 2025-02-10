@@ -1,7 +1,7 @@
 module.exports =  {
     parserPreset: {
         parserOpts: {
-            headerPattern: /^\[(.+?)-(\d+)\]\((.+?)\): (.+)$/,
+            headerPattern: /^\[(\w*)?-(\d+)\]\((.+?)\): (.+)$/,
             headerCorrespondence: ['type', 'ticketNumber', 'scope', 'description'],
         }
     },
@@ -13,7 +13,10 @@ module.exports =  {
                 const { type, ticketNumber, scope, description } = parsed;
                 console.log('type', type, "description", description, "ticketNumber", ticketNumber, "scope", scope);
                 
-                if (!type) return [false, 'type is required'];
+                if (!type || type.trim() === '') {
+                    console.log('type is required');
+                    return [false, 'type is required']
+                };
                 return [true];
             },
             'type-enum': (parsed, _when , expectedValues) => {
@@ -27,24 +30,30 @@ module.exports =  {
             },
             'description-min-length': (parsed, _when, expectedValues) => {
                 const { description } = parsed;
-                if (!description || description?.length < expectedValues[0]) {
-                    return [false, `description must be at least ${expectedValues[0]} characters, current length is ${description.length || 0}`];
+                console.log('expectedValues', expectedValues);
+                console.log('description', description);
+                
+                if (!description || description?.length < expectedValues) {
+                    return [false, `description must be at least ${expectedValues} characters, current length is ${description.length || 0}`];
                 }
+                
                 return [true];
             },
             'description-max-length': (parsed, _when, expectedValues) => {
                 const { description } = parsed;
-                if (!description || description?.length > expectedValues[0]) {
-                    return [false, `description must be less than ${expectedValues[0]} characters, current length is ${description.length || 0}`];
+                console.log('expectedValues', expectedValues);
+                
+                if (!description || description?.length > expectedValues) {
+                    return [false, `description must be less than ${expectedValues} characters, current length is ${description.length || 0}`];
                 }
                 return [true];
             },
         }
     }],
     rules: {
-        'type-empty': [2, 'always'],
+        'type-empty': [2, 'never'],
         'type-enum': [2, 'always', ['feat', 'fix', 'chore', 'docs', 'style', 'refactor', 'perf', 'test', 'build', 'ci', 'revert']],
         'description-min-length': [2, 'always', 10],
-        'description-max-length': [2, 'always', 100],
+        'description-max-length': [2, 'always', 30],
     }
   };
