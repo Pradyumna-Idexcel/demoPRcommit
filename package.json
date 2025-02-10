@@ -1,0 +1,27 @@
+{
+  "name": "demoprcommit",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\"",
+    "prepare": "husky install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Pradyumna-Idexcel/demoPRcommit.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Pradyumna-Idexcel/demoPRcommit/issues"
+  },
+  "homepage": "https://github.com/Pradyumna-Idexcel/demoPRcommit#readme",
+  "devDependencies": {
+    "husky": "^8.0.0"
+  },
+  "dependencies": {
+    "@commitlint/cli": "^19.7.1"
+  }
+}
