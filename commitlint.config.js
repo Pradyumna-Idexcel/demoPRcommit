@@ -1,14 +1,14 @@
 module.exports =  {
     parserPreset: {
         parserOpts: {
-            headerPattern: /^\[(\w*)?-(\d+)\]\((.+?)\): (.+)$/,
+            headerPattern: /^(\w*)?-(\d+)\((.+?)\): (.+)$/,
             headerCorrespondence: ['type', 'ticketNumber', 'scope', 'description'],
         }
     },
     plugins : [{
         rules: {
             'header-format': (parsed, _when) => {
-                const headerPattern = /^\[(\w*)?-(\d+)\]\((.+?)\): (.+)$/;
+                const headerPattern = /^(\w*)?-(\d+)\((.+?)\): (.+)$/;
                 if (!headerPattern.test(parsed.header)) {
                     throw new Error('❌ Invalid commit message format! Expected format: [type-ticketNumber](scope): description');
                 }
@@ -35,8 +35,8 @@ module.exports =  {
             },
             'description-trim-spaces': (parsed, _when) => {
                 const { description } = parsed;
-                if (description && (description.startsWith(' ') || description.endsWith(' '))) {
-                    throw new Error('description must not start or end with spaces(note that there is only one space after "[type-ticketNumber](scope):")');
+                if (description && (description.startsWith(' '))) {
+                    throw new Error('❌ description must not start with spaces(note that there is only one space after "[type-ticketNumber](scope):")');
                 }
                 return [true];
             },
