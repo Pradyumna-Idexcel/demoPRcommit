@@ -1,14 +1,14 @@
 module.exports =  {
     parserPreset: {
         parserOpts: {
-            headerPattern: /^(\S+)?-(\S+)-(\S+)\((\S+)\): (.+)$/,
+            headerPattern: /^(\S+)?-(\S+)-(\S+)\((\S+)\): (\S(?:.*\S)?)$/,
             headerCorrespondence: ['type','ticketKey', 'ticketNumber', 'moduleName', 'description'],
         }
     },
     plugins : [{
         rules: {
             'header-format': (parsed, _when) => {
-                const headerPattern = /^(\S+)?-(\S+)-(\S+)\((\S+)\): (.+)$/;
+                const headerPattern = /^(\S+)?-(\S+)-(\S+)\((\S+)\): (\S(?:.*\S)?)$/;
                 if (!headerPattern.test(parsed.header)) {
                     throw new Error('❌ Invalid commit message format!(check for any extra whitespace character.) Expected format: "type-ticketKey-ticketNumber(moduleName): description');
                 }
@@ -46,17 +46,13 @@ module.exports =  {
                 }
                 return [true];
             },
-            'moduleName-format': (parsed, _when) => {
+            'moduleName-format': (parsed, _when, expectedValues) => {
                 const { moduleName } = parsed;
-                if (!moduleName || !/^[a-z]+$/i.test(moduleName)) {
-                    return [false, '❌ moduleName must be a valid string which contains lowercase alphabets.'];
+                if (!moduleName || !/^[a-z]+$/.test(moduleName)) {
+                    return [false, '❌ moduleName must be a valid string which contains lowercase alphabets only.'];
                 }
-                return [true];
-            },
-            'description-trim-spaces': (parsed, _when) => {
-                const { description } = parsed;
-                if (description && (description.startsWith(' '))) {
-                    throw new Error('❌ description must not start with spaces(note that there is only one space after "[type-ticketKey-ticketNumber](moduleName):")');
+                if (!moduleName || !expectedValues.includes(moduleName)) {
+                    return [false, `❌ moduleName must be one of ${expectedValues.join(', ')}`];
                 }
                 return [true];
             },
@@ -82,8 +78,7 @@ module.exports =  {
         'type-enum': [2, 'always', ['feat', 'fix', 'chore', 'docs', 'style', 'refactor', 'perf', 'test', 'build', 'ci', 'revert']],
         'ticket-key-format': [2, 'always'],
         'ticket-number-format': [2, 'always'],
-        'moduleName-format': [2, 'always'],
-        'description-trim-spaces': [2, 'always'],
+        'moduleName-format': [2, 'always', ['admn', 'coll', 'cove', 'exce', 'expo', 'file', 'flex', 'memo', 'onbd', 'rskr', 'sprd', 'test']],
         'description-min-length': [2, 'always', 10],
         'description-max-length': [2, 'always', 30],
     }
