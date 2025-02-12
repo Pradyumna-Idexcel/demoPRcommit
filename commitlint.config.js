@@ -78,7 +78,7 @@ module.exports =  {
         'type-enum': [2, 'always', ['feat', 'fix', 'chore', 'docs', 'style', 'refactor', 'perf', 'test', 'build', 'ci', 'revert']],
         'ticket-key-format': [2, 'always'],
         'ticket-number-format': [2, 'always'],
-        'moduleName-format': [2, 'always', ['admn', 'coll', 'cove', 'exce', 'expo', 'file', 'flex', 'memo', 'onbd', 'rskr', 'sprd', 'test']],
+        'moduleName-format': [2, 'always', ['admn', 'coll', 'cove', 'loan', 'reln', 'exce', 'expo', 'custp', 'file', 'flex', 'memo', 'onbd', 'rskr', 'sprd', 'dash', 'othr']],
         'description-min-length': [2, 'always', 10],
         'description-max-length': [2, 'always', 30],
     }
