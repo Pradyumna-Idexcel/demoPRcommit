@@ -15,7 +15,6 @@ module.exports =  {
                 return [true];
             },
             'type-empty': (parsed, _when) => {
-                console.log('parsed', parsed);
                 const { type } = parsed;                
                 if (!type) {
                     return [false, 'type is required']
