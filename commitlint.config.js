@@ -59,6 +59,13 @@ module.exports =  {
                 }
                 return [true];
             },
+            'description-no-multiple-spaces': (parsed, _when) => {
+                const { description } = parsed;
+                if (description && /\s{2,}/.test(description)) {
+                    return [false, '❌ Description must not contain multiple consecutive spaces'];
+                }
+                return [true];
+            },
         }
     }],
     rules: {
@@ -69,5 +76,6 @@ module.exports =  {
         'ticket-number-format': [2, 'always'],
         'description-min-length': [2, 'always', 10],
         'description-max-length': [2, 'always', 50],
+        'description-no-multiple-spaces': [2, 'always'],
     }
   };
