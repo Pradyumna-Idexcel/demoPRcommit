@@ -127,7 +127,6 @@ Commit types are based on the Conventional Commits specification, which helps ma
 - **Semantic versioning compatibility** → Helps automate version bumps (`feat` → minor, `fix` → patch).
 - **Better collaboration** → Team members instantly understand the type of change.
 
-
 ## Enforced Rules
 ##### 1. All components of the commit message are mandatory.
 
