@@ -208,7 +208,7 @@ Commit types are based on the Conventional Commits specification, which helps ma
   - `fix-LOSF-1234(sprd): Short` ❌
 
 ###### b) Maximum Length (`description-max-length`)
-- Must be no longer than 30 characters.
+- Must be no longer than 50 characters.
 - Example of incorrect format:
   - `feat-LOSF-1234(loan): This is an extremely long commit message description that exceeds the limit` ❌
 

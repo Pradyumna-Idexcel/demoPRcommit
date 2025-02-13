@@ -80,6 +80,6 @@ module.exports =  {
         'ticket-number-format': [2, 'always'],
         'moduleName-format': [2, 'always', ['admn', 'coll', 'cove', 'loan', 'reln', 'exce', 'expo', 'custp', 'file', 'flex', 'memo', 'onbd', 'rskr', 'sprd', 'dash', 'othr']],
         'description-min-length': [2, 'always', 10],
-        'description-max-length': [2, 'always', 30],
+        'description-max-length': [2, 'always', 50],
     }
   };
