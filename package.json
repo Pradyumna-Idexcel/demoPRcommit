@@ -20,7 +20,6 @@
   "homepage": "https://github.com/Pradyumna-Idexcel/demoPRcommit#readme",
   "devDependencies": {
     "@commitlint/cli": "^19.7.1",
-    "@commitlint/config-conventional": "^19.7.1",
     "husky": "^8.0.0"
   }
 }
