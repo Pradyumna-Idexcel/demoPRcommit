@@ -28,4 +28,3 @@ jobs:
       - name: Run Commitlint on Commit Messages
         run: |
           npx commitlint < commit-messages.txt
-          
