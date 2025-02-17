@@ -1,9 +1,6 @@
 name: PR Commit Message Linting
  
 on:
-  push:
-    branches:
-      - '**'
   pull_request:
     types: [opened, synchronize, reopened]
  
